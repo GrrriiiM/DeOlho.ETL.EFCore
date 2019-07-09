@@ -11,7 +11,7 @@
                 "/p:Exclude=\"[xunit*]*\"",
                 "/p:CoverletOutputFormat=\"cobertura\"",
                 "/p:CoverletOutput=./coverage/",
-                "${workspaceFolder}/DeOlho.ETL.EFCore.sln"
+                "${workspaceFolder}/src/DeOlho.ETL.EFCore.sln"
             ],
             "problemMatcher": "$msCompile",
             "group": "test"
@@ -23,7 +23,7 @@
             "dependsOn": "Test with coverage",
             "group": "test",
             "options": {
-                "cwd": "${workspaceFolder}/UnitTests"
+                "cwd": "${workspaceFolder}/src/UnitTests"
             },
             "presentation": {
                 "reveal": "silent",
@@ -36,7 +36,7 @@
             "command": "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe",
             "dependsOn": "Generate coverage report",
             "args": [
-                "${workspaceFolder}/UnitTests/coverage/report/index.htm"
+                "${workspaceFolder}/src/UnitTests/coverage/report/index.htm"
             ],
             "group": {
                 "kind": "test",
@@ -49,18 +49,19 @@
             "command": "dotnet pack -c release -o ${workspaceFolder}",
             "group": "none",
             "options": {
-                "cwd": "${workspaceFolder}"
+                "cwd": "${workspaceFolder}/src"
             }
         },
         {
             "label": "Push nuget package",
             "type": "shell",
-            "command": "dotnet nuget push ${workspaceFolder}/DeOlho.ETL.EFCore.1.0.0.nupkg -s DeOlho",
+            "command": "dotnet nuget push ${workspaceFolder}/DeOlho.ETL.EFCore.1.0.0.nupkg -s DeOlho -k 730ebfc8d61bea02ac6a5262c8cca917",
             "dependsOn": "Create nuget package",
             "group": "none",
             "options": {
                 "cwd": "${workspaceFolder}"
-            }
+            },
+            "problemMatcher": []
         }
     ]
 }
